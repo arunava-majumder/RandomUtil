@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 
 //This is a utility class to load a word list from a input text file whose path is configurable in the properties file
 //It also provides a functionality to print a word from the list randomly.
-public class RandomUtil {
-	private final static Logger log = Logger.getLogger(RandomUtil.class.getName());
+public class RandomWordUtil {
+	private final static Logger log = Logger.getLogger(RandomWordUtil.class.getName());
 	private static final String PROPERTIES_FILE_PATH = "util.properties";
 
 	// Properties which can contain the path name of the input file from where the
@@ -34,7 +34,7 @@ public class RandomUtil {
 
 	// load the properties
 	private static void loadProperties() {
-		try (InputStream inputStream = RandomUtil.class.getResourceAsStream(PROPERTIES_FILE_PATH)) {
+		try (InputStream inputStream = RandomWordUtil.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE_PATH)) {
 			properties.load(inputStream);
 		} catch (IOException e) {
 			log.info("Could not read properties file from the path: " + PROPERTIES_FILE_PATH);
@@ -47,7 +47,7 @@ public class RandomUtil {
 		String path = null;
 		try {
 			path = properties.getProperty("path");
-			words = Files.readAllLines(Paths.get(RandomUtil.class.getResource(path).getPath()));
+			words = Files.readAllLines(Paths.get(RandomWordUtil.class.getClassLoader().getResource(path).getPath()));
 		} catch (IOException e) {
 			log.info("Could not read words file from the path: " + path);
 			e.printStackTrace();
@@ -70,7 +70,7 @@ public class RandomUtil {
 	}
 
 	public static void main(String[] args) {
-		String str = RandomUtil.getRandomWord();
+		String str = RandomWordUtil.getRandomWord();
 		System.out.println(str);
 	}
 

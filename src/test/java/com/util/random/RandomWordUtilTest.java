@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RandomUtilTest {
+public class RandomWordUtilTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -19,13 +19,13 @@ public class RandomUtilTest {
 
 	@Test
 	public void testWordNotNullWithValidInputFile() {
-		assertNotNull(RandomUtil.getRandomWord());
+		assertNotNull(RandomWordUtil.getRandomWord());
 	}
 
 	@Test
 	public void testTwoWordsNotSame() {
-		String str1 = RandomUtil.getRandomWord();
-		String str2 = RandomUtil.getRandomWord();
+		String str1 = RandomWordUtil.getRandomWord();
+		String str2 = RandomWordUtil.getRandomWord();
 		assertNotEquals(str1, str2);
 	}
 
